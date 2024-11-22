@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/flightctl/flightctl/api/v1alpha1"
 	apiClient "github.com/flightctl/flightctl/lib/api/client"
+	"github.com/flightctl/flightctl/lib/apipublic/v1alpha1"
 	"github.com/flightctl/flightctl/pkg/reqid"
 	"github.com/go-chi/chi/middleware"
 )

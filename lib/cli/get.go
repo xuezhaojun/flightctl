@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/flightctl/flightctl/api/v1alpha1"
+	"github.com/flightctl/flightctl/lib/apipublic/v1alpha1"
 )
 
 func GetRepository(ctx context.Context, token string, server string, name string) (*v1alpha1.Repository, error) {

@@ -1,25 +1,12 @@
 #!/bin/bash
 
-# Clean up
-rm -rf lib/api lib/api/client
-
-# Create directories if they don't exist
-mkdir -p lib/api lib/api/client
-
-# Copy client directory
-cp -r internal/api/client/* lib/api/client/
-
-echo "Successfully copied client and api directories to /lib"
-
-# ---
-
 # Copy api to apipublic
-rm -rf apipublic
+rm -rf lib/apipublic
 
-mkdir -p apipublic
+mkdir -p lib/apipublic
 
-cp -r api/v1alpha1 apipublic/v1alpha1
+cp -r api/v1alpha1 lib/apipublic/v1alpha1
 
-rm -rf apipublic/v1alpha1/validation.go
+rm -rf lib/apipublic/v1alpha1/validation.go # this file import the internal/api/v1alpha1/validation.go, need to remove it
 
-echo "Successfully copied api to apipublic"
+echo "Successfully copied api to lib/apipublic"

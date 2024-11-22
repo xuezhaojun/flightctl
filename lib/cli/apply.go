@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/flightctl/flightctl/api/v1alpha1"
 	apiClient "github.com/flightctl/flightctl/lib/api/client"
+	"github.com/flightctl/flightctl/lib/apipublic/v1alpha1"
 )
 
 func ApplyRepository(ctx context.Context, token string, server string, r *v1alpha1.Repository) error {
