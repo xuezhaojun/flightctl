@@ -10,3 +10,16 @@ mkdir -p lib/api lib/api/client
 cp -r internal/api/client/* lib/api/client/
 
 echo "Successfully copied client and api directories to /lib"
+
+# ---
+
+# Copy api to apipublic
+rm -rf apipublic
+
+mkdir -p apipublic
+
+cp -r api/v1alpha1 apipublic/v1alpha1
+
+rm -rf apipublic/v1alpha1/validation.go
+
+echo "Successfully copied api to apipublic"
