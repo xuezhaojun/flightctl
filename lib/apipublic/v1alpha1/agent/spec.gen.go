@@ -12,7 +12,7 @@ import (
 	"path"
 	"strings"
 
-	externalRef0 "github.com/flightctl/flightctl/api/v1alpha1"
+	externalRef0 "github.com/flightctl/flightctl/lib/apipublic/v1alpha1"
 	"github.com/getkin/kin-openapi/openapi3"
 )
 

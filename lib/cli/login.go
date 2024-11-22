@@ -9,7 +9,7 @@ import (
 
 	apiClient "github.com/flightctl/flightctl/lib/api/client"
 	"github.com/flightctl/flightctl/lib/apipublic/v1alpha1"
-	"github.com/flightctl/flightctl/pkg/reqid"
+	"github.com/flightctl/flightctl/lib/reqid"
 	"github.com/go-chi/chi/middleware"
 )
 
