@@ -3,12 +3,11 @@ package cli
 import (
 	"context"
 	"fmt"
-	"net/http"
 
-	"github.com/flightctl/flightctl/lib/apipublic/v1alpha1"
+	"github.com/flightctl/flightctl/lib/api/client"
 )
 
-func GetRepository(ctx context.Context, token string, server string, name string) (*v1alpha1.Repository, error) {
+func GetRepository(ctx context.Context, token string, server string, name string) (*client.ReadRepositoryResponse, error) {
 	c, err := apiClientFromToken(token, server)
 	if err != nil {
 		return nil, fmt.Errorf("creating client: %w", err)
@@ -20,15 +19,10 @@ func GetRepository(ctx context.Context, token string, server string, name string
 		return nil, fmt.Errorf("reading repository %s: %w", name, err)
 	}
 
-	// Check response status
-	if response.StatusCode() != http.StatusOK {
-		return nil, fmt.Errorf("reading repository %s: status code %d", name, response.StatusCode())
-	}
-
-	return response.JSON200, nil
+	return response, nil
 }
 
-func GetDevice(ctx context.Context, token string, server string, name string) (*v1alpha1.Device, error) {
+func GetDevice(ctx context.Context, token string, server string, name string) (*client.ReadDeviceResponse, error) {
 	c, err := apiClientFromToken(token, server)
 	if err != nil {
 		return nil, fmt.Errorf("creating client: %w", err)
@@ -40,13 +34,5 @@ func GetDevice(ctx context.Context, token string, server string, name string) (*
 		return nil, fmt.Errorf("reading device %s: %w", name, err)
 	}
 
-	// Check response status
-	if response.StatusCode() != http.StatusOK {
-		return nil, fmt.Errorf("reading device %s: status code %d", name, response.StatusCode())
-	}
-	if response.JSON200 == nil {
-		return nil, fmt.Errorf("reading device %s: status code %d", name, response.StatusCode())
-	}
-
-	return response.JSON200, nil
+	return response, nil
 }

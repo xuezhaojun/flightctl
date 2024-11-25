@@ -8,46 +8,9 @@ import (
 	"net/url"
 
 	apiClient "github.com/flightctl/flightctl/lib/api/client"
-	"github.com/flightctl/flightctl/lib/apipublic/v1alpha1"
 	"github.com/flightctl/flightctl/lib/reqid"
 	"github.com/go-chi/chi/middleware"
 )
-
-func LoginWithOpenshiftToken(ctx context.Context, token string, server string) error {
-	httpClient, err := NewHTTPClientFromConfig(Config{
-		Server: server,
-		Token:  token,
-	})
-	if err != nil {
-		return fmt.Errorf("failed to create http client: %w", err)
-	}
-
-	c, err := apiClient.NewClientWithResponses(server, apiClient.WithHTTPClient(httpClient))
-	if err != nil {
-		return fmt.Errorf("creating client: %w", err)
-	}
-
-	resp, err := c.AuthConfigWithResponse(ctx)
-	if err != nil {
-		return fmt.Errorf("failed to get auth info: %w", err)
-	}
-
-	if resp.StatusCode() != http.StatusOK {
-		return fmt.Errorf("unexpected response code: %v", resp.StatusCode())
-	}
-
-	headerVal := "Bearer " + token
-	res, err := c.AuthValidateWithResponse(ctx, &v1alpha1.AuthValidateParams{Authentication: &headerVal})
-	if err != nil {
-		return fmt.Errorf("validating token: %w", err)
-	}
-
-	if res.StatusCode() != http.StatusOK {
-		return fmt.Errorf("unexpected response code: %v", res.StatusCode())
-	}
-
-	return nil
-}
 
 func apiClientFromToken(token string, server string) (*apiClient.ClientWithResponses, error) {
 	// Create client configuration
