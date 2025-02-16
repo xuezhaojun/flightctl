@@ -166,7 +166,7 @@ $ FC_CLI_BINARY=flightctl-linux-amd64
 Download the `flightctl` binary to your machine:
 
 ```console
-$ curl -LO https://github.com/flightctl/flightctl/releases/download/latest/${FC_CLI_BINARY}
+$ curl -LO https://github.com/flightctl/flightctl/releases/latest/download/${FC_CLI_BINARY}
 
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -253,13 +253,13 @@ Next, we will use [Podman](https://github.com/containers/podman) to build a [boo
 Retrieve the agent configuration with enrollment credentials by running:
 
 ```console
-flightctl certificate request --signer=enrollment --expiration=365d --output=embedded > config.yaml
+flightctl certificate request --signer=enrollment --expiration=365d --output=embedded > agentconfig.yaml
 ```
 
-The returned `config.yaml` should look similar to this:
+The returned `agentconfig.yaml` should look similar to this:
 
 ```console
-$ cat config.yaml
+$ cat agentconfig.yaml
 enrollment-service:
   service:
     server: https://agent-api.flightctl.127.0.0.1.nip.io:7443
